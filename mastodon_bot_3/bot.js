@@ -24,6 +24,7 @@ stream.on('message', response => {
     const acct = response.data.account.acct;
     const content = response.data.status.content;
 
+    const regex = /\d+((\.|\,)\d+)?/; // Supports float numbers separated by period or comma
     const results = content.match(regex);
     let angle = -1;
     if (results) {
