@@ -1,4 +1,4 @@
-import M from "./mastodon";
+const M = require("./mastodon");
 
 function toot(content, id) {
   const params = {
@@ -19,7 +19,7 @@ function toot(content, id) {
   });
 }
 
-export default function bot2() {
+module.exports = function bot2() {
   const listener = M.stream("streaming/user");
   listener.on("error", err => console.log(err));
 

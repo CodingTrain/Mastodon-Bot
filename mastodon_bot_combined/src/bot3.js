@@ -1,9 +1,8 @@
-import M from "./mastodon";
-import config from "dotenv";
-import util from "util";
-import fs from "fs";
-import { exec as _exec } from "child_process";
-const exec = util.promisify(_exec);
+const M = require("./mastodon");
+require("dotenv").config();
+const util = require("util");
+const fs = require("fs");
+const exec = util.promisify(require("child_process").exec);
 
 const cmd = "processing-java --sketch=`pwd`/treegen --run";
 
@@ -46,7 +45,7 @@ async function toot(acct, reply_id, angle) {
   }
 }
 
-export default function bot3() {
+module.exports = function bot3() {
   const stream = M.stream("streaming/user");
 
   stream.on("message", response => {

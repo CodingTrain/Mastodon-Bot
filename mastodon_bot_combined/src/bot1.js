@@ -1,4 +1,4 @@
-import M from "./mastodon";
+const M = require("./mastodon");
 
 function toot() {
   const num = Math.floor(Math.random() * 100);
@@ -19,7 +19,7 @@ function toot() {
   });
 }
 
-export default function bot1() {
+module.exports = function bot1() {
     toot();
     setInterval(toot, 24 * 60 * 60 * 1000);
 }

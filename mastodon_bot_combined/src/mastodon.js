@@ -1,5 +1,4 @@
-import Mastodon from "mastodon-api";
-
+const Mastodon = require("mastodon-api");
 const M = new Mastodon({
   client_key: process.env.CLIENT_KEY,
   client_secret: process.env.CLIENT_SECRET,
@@ -8,4 +7,4 @@ const M = new Mastodon({
   api_url: 'https://botsin.space/api/v1/', // optional, defaults to https://mastodon.social/api/v1/
 })
 
-export default M;
+module.exports = M;
