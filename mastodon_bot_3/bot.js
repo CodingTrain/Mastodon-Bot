@@ -24,11 +24,10 @@ stream.on('message', response => {
     const acct = response.data.account.acct;
     const content = response.data.status.content;
 
-    const regex = /\d+((\.|\,)\d+)?/;
     const results = content.match(regex);
     let angle = -1;
     if (results) {
-      angle = results[0]
+      angle = results[0].replace(/\,/, '.'); // If comma separator was used, change it to period
     }
 
     toot(acct, id, angle)
