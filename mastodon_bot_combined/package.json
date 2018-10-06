@@ -1,0 +1,20 @@
+{
+  "name": "mastodon_bot_combined",
+  "version": "1.0.0",
+  "description": "Combined Mastodon bots from the tutorial series on the Coding Train",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Shiffman",
+  "license": "MIT",
+  "keywords": [
+    "bot",
+    "mastodon",
+    "education"
+  ],
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "mastodon-api": "^1.3.0"
+  }
+}
