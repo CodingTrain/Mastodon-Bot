@@ -6,10 +6,11 @@
   "scripts": {
     "start": "node deploy/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BlackWolfff/Mastodon-Bot.git"
-  },
+  "keywords": [
+    "bot",
+    "mastodon",
+    "education"
+  ],
   "author": "Daniel Shiffman",
   "license": "MIT",
   "dependencies": {
