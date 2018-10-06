@@ -23,7 +23,7 @@ const M = new Mastodon({
 M.__stream_native = M.stream
 M.stream = function (endpoint, ...args) {
   if(!MastodonStreams.has(endpoint)) {
-    const stream = M.stream(endpoint, ...args)
+    const stream = M.__stream_native(endpoint, ...args)
     MastodonStreams.set(endpoint, stream)
   }
   return MastodonStreams.get(endpoint)
