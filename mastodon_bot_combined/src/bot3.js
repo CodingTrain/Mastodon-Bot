@@ -65,4 +65,4 @@ module.exports = function bot3() {
         .catch(error => console.error(error));
     }
   });
-}
+};
