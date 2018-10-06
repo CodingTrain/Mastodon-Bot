@@ -1,4 +1,6 @@
 const Mastodon = require("mastodon-api");
+require("dotenv").config();
+
 const M = new Mastodon({
   client_key: process.env.CLIENT_KEY,
   client_secret: process.env.CLIENT_SECRET,
