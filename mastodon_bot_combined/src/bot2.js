@@ -20,6 +20,7 @@ async function toot(content, id) {
   const data = await m.post("statuses", params);
   console.log(`id: ${data.id} and timestamp: ${data.created_at}`);
   console.log(data.content);
+  return { success: true };
 }
 
 module.exports = function bot2() {
@@ -70,7 +71,9 @@ module.exports = function bot2() {
           console.log("I got a question");
           const num = Math.floor(Math.random() * 100);
           const reply = `@${acct} The meaning of life is: ${num}`;
-          toot(reply, id);
+          toot(reply, id)
+            .then(response => console.log(response))
+            .catch(error => console.error(error));
         }
       }
     }
