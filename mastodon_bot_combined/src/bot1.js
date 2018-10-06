@@ -24,7 +24,7 @@ async function toot() {
 
 module.exports = async function bot1() {
   try {
-    toot();
+    await toot();
     setInterval(toot, 24 * 60 * 60 * 1000);
   } catch (err) {
     console.error(err);
