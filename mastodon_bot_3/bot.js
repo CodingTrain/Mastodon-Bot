@@ -25,7 +25,7 @@ stream.on('message', response => {
     const content = response.data.status.content;
 
     // Get the first Number
-    const results = content.match(/\d+/);
+    const results = content.match(/\d+((\.|\,)\d+)?/);
     let angle = results ? results[0] : -1;
 
     toot(acct, id, angle)
