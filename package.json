@@ -1,10 +1,10 @@
 {
-  "name": "mastodon_bot_2",
-  "version": "0.0.1",
-  "description": "Example code for Mastodon Bot on Coding Train",
-  "main": "bot.js",
+  "name": "mastodon-bot",
+  "version": "1.0.0",
+  "description": "Example code and all-in-one bot for Mastodon on Coding Train",
+  "main": "deploy/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node deploy/index.js"
   },
   "keywords": [
     "bot",

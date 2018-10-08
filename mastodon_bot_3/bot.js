@@ -24,56 +24,47 @@ stream.on('message', response => {
     const acct = response.data.account.acct;
     const content = response.data.status.content;
 
-    const regex = /\d+((\.|\,)\d+)?/; // Supports float numbers separated by period or comma
-    const results = content.match(regex);
-    let angle = -1;
-    if (results) {
-      angle = results[0].replace(/\,/, '.'); // If comma separator was used, change it to period
-    }
+    // Get the first Number
+    const results = content.match(/\d+((\.|\,)\d+)?/);
+    let angle = results ? results[0] : -1;
 
     toot(acct, id, angle)
       .then(response => console.log(response))
       .catch(error => console.error(error));
   }
-
 });
-
-
-//tooter();
-//setInterval(tooter, 24 * 60 * 60 * 1000);
 
 async function toot(acct, reply_id, angle) {
   if (angle === -1) {
     const params = {
-      status: `@${acct} Please specify an angle in degrees using digits`,
+      status: `@${acct} Please specify an angle in degrees using digits.`,
       in_reply_to_id: reply_id
     }
-    const response = await M.post('statuses', params)
+    await M.post('statuses', params)
     return {
       success: true,
       angle: -1
     };
   } else {
-    // Step 1
-    const response1 = await exec(cmd + ' ' + angle);
-    const out = response1.stdout.split('\n');
+    // Step 1: Get generate image with specified angle
+    await exec(cmd + ' ' + angle);
     const stream = fs.createReadStream('treegen/tree.png');
 
     // Step 2: Upload Media
-    const params1 = {
+    const uploadParams = {
       file: stream,
-      description: `A randomly generated fractal tree with ${angle}`
+      description: `A randomly generated fractal tree with ${angle} degrees.`
     }
-    const response2 = await M.post('media', params1);
-    const id = response2.data.id;
+    const uploadResponse = await M.post('media', uploadParams);
+    const mediaId = uploadResponse.data.id;
 
-    // Step 3
-    const params2 = {
+    // Step 3: Toot with image attached
+    const tootParams = {
       status: `@${acct} Behold my beautiful tree with angle ${angle} degrees`,
       in_reply_to_id: reply_id,
-      media_ids: [id]
+      media_ids: [mediaId]
     }
-    const response3 = await M.post('statuses', params2)
+    await M.post('statuses', tootParams)
     return {
       success: true,
       angle: angle
