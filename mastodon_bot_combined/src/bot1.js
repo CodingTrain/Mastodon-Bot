@@ -17,9 +17,9 @@ async function toot() {
   //     console.log(data.content);
   //   }
   // });
-  const data = await M.post('statuses', params);
-  console.log(`ID: ${data.id} and timestamp: ${data.created_at}`);
-  console.log(data.content);
+  const response = await M.post('statuses', params);
+  console.log(`ID: ${response.data.id} and timestamp: ${response.data.created_at}`);
+  console.log(response.data.content);
 }
 
 module.exports = async function bot1() {
